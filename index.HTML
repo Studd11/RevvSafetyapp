@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revv Aviation Safety Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .form-container { max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; }
+        label { display: block; margin: 10px 0 5px; }
+        input, select, textarea { width: 100%; padding: 8px; margin-bottom: 10px; }
+        button { padding: 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #45a049; }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Revv Aviation Safety Report</h2>
+        <label for="report-date">Date:</label>
+        <input type="date" id="report-date" required>
+        <label for="reporter">Your Name:</label>
+        <input type="text" id="reporter" required>
+        <label for="site">Site:</label>
+        <select id="site" required>
+            <option value="">Select Site</option>
+            <option value="ARR">ARR</option>
+            <option value="DVN">DVN</option>
+            <option value="CBF">CBF</option>
+            <option value="JVL">JVL</option>
+            <option value="OMA">OMA</option>
+            <option value="MLI">MLI</option>
+            <option value="FXE">FXE</option>
+            <option value="MUT">MUT</option>
+        </select>
+        <label for="event">Event Type:</label>
+        <select id="event" required>
+            <option value="">Select Type</option>
+            <option value="Hazard">Hazard</option>
+            <option value="WX">Weather</option>
+        </select>
+        <label for="description">Description:</label>
+        <textarea id="description" rows="4" required></textarea>
+        <button onclick="submitReport()">Submit</button>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        function submitReport() {
+            const report = {
+                date: document.getElementById('report-date').value,
+                reporter: document.getElementById('reporter').value,
+                site: document.getElementById('site').value,
+                event: document.getElementById('event').value,
+                description: document.getElementById('description').value
+            };
+            if (!report.date || !report.reporter || !report.site || !report.event || !report.description) {
+                document.getElementById('message').innerHTML = 'Please fill out all fields.';
+                return;
+            }
+            document.getElementById('message').innerHTML = 'Report submitted! (Saved locally for now)';
+            console.log('Report:', report); // View in browser console (F12)
+            document.getElementById('report-date').value = '';
+            document.getElementById('reporter').value = '';
+            document.getElementById('site').value = '';
+            document.getElementById('event').value = '';
+            document.getElementById('description').value = '';
+        }
+    </script>
+</body>
+</html>
